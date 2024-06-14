@@ -1,0 +1,79 @@
+In Laravel, a "resource route" is a convenient way to define a set of routes that correspond to typical CRUD (Create, Read, Update, Delete) operations on a resource. When you define a resource route, Laravel automatically generates the necessary routes for these operations, which map to controller methods that you define.
+
+Use the Artisan command to generate a resource controller for the user. This will automatically include the typical CRUD methods.
+
+------> php artisan make:controller UserController --resource
+
+This command will create a UserController in the app/Http/Controllers directory with methods for index, create, store, show, edit, update, and destroy.
+
+
+
+																		✨✨Laravel Breeze Package✨✨
+
+laravel Breeze package
+
+Laravel Breeze is a minimal, simple implementation of all of Laravel's authentication features, including login, registration, password reset, email verification, and password confirmation. In addition, Breeze includes a simple "profile" page where the user may update their name, email address, and password.
+
+If you have already created a new Laravel application without a starter kit, you may manually install Laravel Breeze using Composer:
+
+------> composer require laravel/breeze --dev
+
+The breeze:install command will prompt you for your preferred frontend stack and testing framework:
+
+------> php artisan breeze:install
+ 
+------> php artisan migrate
+------> npm install
+------> npm run dev
+															
+																			✨✨change host port in laravel✨✨
+																			
+
+To run your Laravel project on a different port, you can specify the port when starting the built-in PHP development server using the artisan serve command. By default, Laravel uses port 8000, but you can choose any other available port.
+
+1. Navigate to Your Project Directory:
+Open your terminal or command prompt and navigate to the root directory of your Laravel project.
+
+------> cd /path/to/your/laravel/project
+
+2. Start the Laravel Development Server on a Different Port:
+Use the php artisan serve command with the --port option to specify a different port.
+
+php artisan serve --port=8080
+
+
+Using a Different Port Each Time:
+If you need to run multiple Laravel projects simultaneously, you can start each project on a different port by specifying the port number each time you use the php artisan serve command.
+
+Project 1:php artisan serve --port=8000
+Project 2:php artisan serve --port=8001
+
+
+------------------------------------------------------------------------------------------------------------
+
+			This code store multiple option data in single row of database table in laravel
+
+			$input = $request->all();
+			$product = $input['products'];
+			$input['products'] = implode(',', $product);
+			$data->products = $input['products'];
+		
+-------------------------------------------------------------------------------------------------------------
+
+ 
+			This code for genrate 6 randomly string first 3 value will be character and last 3 value will be numeric
+
+			$string =  chr(rand(65,90)).chr(rand(65,90)).chr(rand(65,90));
+			$numeric = rand(100, 999);
+			$randomString = $string . $numeric;
+
+			dd($randomString);
+		
+------------------------------------------------------------------------------------------------------------------
+
+			If you create defaut database entry in table so use this command   -> php artisan tinker
+			
+-> User::factory()->count(40)->create()
+
+
+-----------------------------------------------------------------------------------------------------------------
