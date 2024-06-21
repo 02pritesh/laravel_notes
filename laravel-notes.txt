@@ -183,3 +183,5 @@ Define Relationships in Models: Use hasOne and belongsTo relationships to connec
 Fetch Data in Controller: Use with to load related data when fetching users.
 Display Data in Blade Template: Access related data through the relationship and handle cases where related data might not exist.
 By following these steps, you can easily fetch and display related data from another table using the user_id.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
