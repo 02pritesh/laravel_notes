@@ -77,3 +77,109 @@ Project 2:php artisan serve --port=8001
 
 
 -----------------------------------------------------------------------------------------------------------------
+project -> attendence
+								✨✨If you want to add id of one table from  another table
+
+1st step import use Session;
+2nd IN controller code 
+	$request->session()->put('id','$user->id');
+	
+3rd In form
+ input field value = "{{Session()->get('id')}}";
+ 
+--------------------------------------------------------------------------------------------------------------------
+project -> attendence
+
+								✨✨If you apply condition on one table (what -> you want to check this id exist or not means in your given table row have no same name id or not so this query can you use)
+								
+								ModelName::where('id',$request->id)->exists();
+								
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+To fetch data from another table using the user_id and display it in your Blade template, you can use Eloquent relationships. Here's a step-by-step guide to achieve this:
+
+1. Define the Relationship in Your Models
+Assuming you have two models: User and UserDetails, you need to define the relationship between them.
+
+In your User model, add:
+public function userDetails()
+{
+    return $this->hasOne(UserDetails::class, 'user_id', 'id');
+}
+
+
+In your UserDetails model, add:
+
+php
+Copy code
+public function user()
+{
+    return $this->belongsTo(User::class, 'user_id', 'id');
+}
+
+2. Fetch the Data in Your Controller
+When fetching the data in your controller, make sure to load the related UserDetails data. Here’s an example:
+
+php
+Copy code
+public function showUserDetails()
+{
+    $users = User::with('userDetails')->get();
+    return view('user_details', compact('users'));
+}
+
+Display the Data in Your Blade Template
+Now you can access the UserDetails data through the user relationship in your Blade template.
+
+blade
+Copy code
+@extends('admin.main.main')
+
+@section('admin-content')
+    <div class="container">
+        <h4 class="text-center">User Details</h4>
+        
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>Mobile No</th>
+                    <th>Age</th>
+                    <th>DOB</th>
+                    <th>Joining Date</th>
+                    <th>Position</th>
+                    <th>Address</th>
+                    <th>Experience</th>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($users as $user)
+                    <tr>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->userDetails->name ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->mobile_no ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->age ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->dob ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->joining_date ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->position ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->address ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->experience ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->country ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->state ?? 'N/A' }}</td>
+                        <td>{{ $user->userDetails->city ?? 'N/A' }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+@endsection
+
+
+Summary
+Define Relationships in Models: Use hasOne and belongsTo relationships to connect User and UserDetails.
+Fetch Data in Controller: Use with to load related data when fetching users.
+Display Data in Blade Template: Access related data through the relationship and handle cases where related data might not exist.
+By following these steps, you can easily fetch and display related data from another table using the user_id.
