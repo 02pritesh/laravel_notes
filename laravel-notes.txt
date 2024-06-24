@@ -210,7 +210,15 @@
 		$user = UserDetail::whereNOtIn('age',[18,19])->get();
 		
 		
-	4. T
+	4. This query fetch the all Null details in a table of column.
+	
+		$user = UserDetail::whereNull('created_at')->get();
+		
+		
+	5. This query fetch the all not Null details in a table of column.
+		
+		$user = UserDetail::whereNOtNull('salary')->get();
+		
 						
 						
 	
