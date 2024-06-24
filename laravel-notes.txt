@@ -1,187 +1,202 @@
-In Laravel, a "resource route" is a convenient way to define a set of routes that correspond to typical CRUD (Create, Read, Update, Delete) operations on a resource. When you define a resource route, Laravel automatically generates the necessary routes for these operations, which map to controller methods that you define.
+	In Laravel, a "resource route" is a convenient way to define a set of routes that correspond to typical CRUD (Create, Read, Update, Delete) operations on a resource. When you define a resource route, Laravel automatically generates the necessary routes for these operations, which map to controller methods that you define.
 
-Use the Artisan command to generate a resource controller for the user. This will automatically include the typical CRUD methods.
+	Use the Artisan command to generate a resource controller for the user. This will automatically include the typical CRUD methods.
 
-------> php artisan make:controller UserController --resource
+	------> php artisan make:controller UserController --resource
 
-This command will create a UserController in the app/Http/Controllers directory with methods for index, create, store, show, edit, update, and destroy.
-
-
-
-																		✨✨Laravel Breeze Package✨✨
-
-laravel Breeze package
-
-Laravel Breeze is a minimal, simple implementation of all of Laravel's authentication features, including login, registration, password reset, email verification, and password confirmation. In addition, Breeze includes a simple "profile" page where the user may update their name, email address, and password.
-
-If you have already created a new Laravel application without a starter kit, you may manually install Laravel Breeze using Composer:
-
-------> composer require laravel/breeze --dev
-
-The breeze:install command will prompt you for your preferred frontend stack and testing framework:
-
-------> php artisan breeze:install
- 
-------> php artisan migrate
-------> npm install
-------> npm run dev
-															
-																			✨✨change host port in laravel✨✨
-																			
-
-To run your Laravel project on a different port, you can specify the port when starting the built-in PHP development server using the artisan serve command. By default, Laravel uses port 8000, but you can choose any other available port.
-
-1. Navigate to Your Project Directory:
-Open your terminal or command prompt and navigate to the root directory of your Laravel project.
-
-------> cd /path/to/your/laravel/project
-
-2. Start the Laravel Development Server on a Different Port:
-Use the php artisan serve command with the --port option to specify a different port.
-
-php artisan serve --port=8080
+	This command will create a UserController in the app/Http/Controllers directory with methods for index, create, store, show, edit, update, and destroy.
 
 
-Using a Different Port Each Time:
-If you need to run multiple Laravel projects simultaneously, you can start each project on a different port by specifying the port number each time you use the php artisan serve command.
 
-Project 1:php artisan serve --port=8000
-Project 2:php artisan serve --port=8001
+																			✨✨Laravel Breeze Package✨✨
+
+	laravel Breeze package
+
+	Laravel Breeze is a minimal, simple implementation of all of Laravel's authentication features, including login, registration, password reset, email verification, and password confirmation. In addition, Breeze includes a simple "profile" page where the user may update their name, email address, and password.
+
+	If you have already created a new Laravel application without a starter kit, you may manually install Laravel Breeze using Composer:
+
+	------> composer require laravel/breeze --dev
+
+	The breeze:install command will prompt you for your preferred frontend stack and testing framework:
+
+	------> php artisan breeze:install
+	 
+	------> php artisan migrate
+	------> npm install
+	------> npm run dev
+																
+																				✨✨change host port in laravel✨✨
+																				
+
+	To run your Laravel project on a different port, you can specify the port when starting the built-in PHP development server using the artisan serve command. By default, Laravel uses port 8000, but you can choose any other available port.
+
+	1. Navigate to Your Project Directory:
+	Open your terminal or command prompt and navigate to the root directory of your Laravel project.
+
+	------> cd /path/to/your/laravel/project
+
+	2. Start the Laravel Development Server on a Different Port:
+	Use the php artisan serve command with the --port option to specify a different port.
+
+	php artisan serve --port=8080
 
 
-------------------------------------------------------------------------------------------------------------
+	Using a Different Port Each Time:
+	If you need to run multiple Laravel projects simultaneously, you can start each project on a different port by specifying the port number each time you use the php artisan serve command.
 
-			This code store multiple option data in single row of database table in laravel
+	Project 1:php artisan serve --port=8000
+	Project 2:php artisan serve --port=8001
 
-			$input = $request->all();
-			$product = $input['products'];
-			$input['products'] = implode(',', $product);
-			$data->products = $input['products'];
-		
--------------------------------------------------------------------------------------------------------------
 
- 
-			This code for genrate 6 randomly string first 3 value will be character and last 3 value will be numeric
+	------------------------------------------------------------------------------------------------------------
 
-			$string =  chr(rand(65,90)).chr(rand(65,90)).chr(rand(65,90));
-			$numeric = rand(100, 999);
-			$randomString = $string . $numeric;
+				This code store multiple option data in single row of database table in laravel
 
-			dd($randomString);
-		
-------------------------------------------------------------------------------------------------------------------
-
-			If you create defaut database entry in table so use this command   -> php artisan tinker
+				$input = $request->all();
+				$product = $input['products'];
+				$input['products'] = implode(',', $product);
+				$data->products = $input['products'];
 			
--> User::factory()->count(40)->create()
+	-------------------------------------------------------------------------------------------------------------
+
+	 
+				This code for genrate 6 randomly string first 3 value will be character and last 3 value will be numeric
+
+				$string =  chr(rand(65,90)).chr(rand(65,90)).chr(rand(65,90));
+				$numeric = rand(100, 999);
+				$randomString = $string . $numeric;
+
+				dd($randomString);
+			
+	------------------------------------------------------------------------------------------------------------------
+
+				If you create defaut database entry in table so use this command   -> php artisan tinker
+				
+	-> User::factory()->count(40)->create()
 
 
------------------------------------------------------------------------------------------------------------------
-project -> attendence
-								✨✨If you want to add id of one table from  another table
+	-----------------------------------------------------------------------------------------------------------------
+	project -> attendence
+									✨✨If you want to add id of one table from  another table
 
-1st step import use Session;
-2nd IN controller code 
-	$request->session()->put('id','$user->id');
+	1st step import use Session;
+	2nd IN controller code 
+		$request->session()->put('id','$user->id');
+		
+	3rd In form
+	 input field value = "{{Session()->get('id')}}";
+	 
+	--------------------------------------------------------------------------------------------------------------------
+	project -> attendence
+
+									✨✨If you apply condition on one table (what -> you want to check this id exist or not means in your given table row have no same name id or not so this query can you use)
+									
+									ModelName::where('id',$request->id)->exists();
+									
+	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	To fetch data from another table using the user_id and display it in your Blade template, you can use Eloquent relationships. Here's a step-by-step guide to achieve this:
+
+	1. Define the Relationship in Your Models
+	Assuming you have two models: User and UserDetails, you need to define the relationship between them.
+
+	In your User model, add:
+	public function userDetails()
+	{
+		return $this->hasOne(UserDetails::class, 'user_id', 'id');
+	}
+
+
+	In your UserDetails model, add:
+
+	php
+	Copy code
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'user_id', 'id');
+	}
+
+	2. Fetch the Data in Your Controller
+	When fetching the data in your controller, make sure to load the related UserDetails data. Here’s an example:
+
+	php
+	Copy code
+	public function showUserDetails()
+	{
+		$users = User::with('userDetails')->get();
+		return view('user_details', compact('users'));
+	}
+
+	Display the Data in Your Blade Template
+	Now you can access the UserDetails data through the user relationship in your Blade template.
+
+	blade
+	Copy code
+	@extends('admin.main.main')
+
+	@section('admin-content')
+		<div class="container">
+			<h4 class="text-center">User Details</h4>
+			
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>User ID</th>
+						<th>User Name</th>
+						<th>Mobile No</th>
+						<th>Age</th>
+						<th>DOB</th>
+						<th>Joining Date</th>
+						<th>Position</th>
+						<th>Address</th>
+						<th>Experience</th>
+						<th>Country</th>
+						<th>State</th>
+						<th>City</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($users as $user)
+						<tr>
+							<td>{{ $user->id }}</td>
+							<td>{{ $user->userDetails->name ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->mobile_no ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->age ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->dob ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->joining_date ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->position ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->address ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->experience ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->country ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->state ?? 'N/A' }}</td>
+							<td>{{ $user->userDetails->city ?? 'N/A' }}</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+		</div>
+	@endsection
+
+
+	Summary
+	Define Relationships in Models: Use hasOne and belongsTo relationships to connect User and UserDetails.
+	Fetch Data in Controller: Use with to load related data when fetching users.
+	Display Data in Blade Template: Access related data through the relationship and handle cases where related data might not exist.
+	By following these steps, you can easily fetch and display related data from another table using the user_id.
+
+	--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	
-3rd In form
- input field value = "{{Session()->get('id')}}";
- 
---------------------------------------------------------------------------------------------------------------------
-project -> attendence
 
-								✨✨If you apply condition on one table (what -> you want to check this id exist or not means in your given table row have no same name id or not so this query can you use)
-								
-								ModelName::where('id',$request->id)->exists();
-								
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-To fetch data from another table using the user_id and display it in your Blade template, you can use Eloquent relationships. Here's a step-by-step guide to achieve this:
-
-1. Define the Relationship in Your Models
-Assuming you have two models: User and UserDetails, you need to define the relationship between them.
-
-In your User model, add:
-public function userDetails()
-{
-    return $this->hasOne(UserDetails::class, 'user_id', 'id');
-}
-
-
-In your UserDetails model, add:
-
-php
-Copy code
-public function user()
-{
-    return $this->belongsTo(User::class, 'user_id', 'id');
-}
-
-2. Fetch the Data in Your Controller
-When fetching the data in your controller, make sure to load the related UserDetails data. Here’s an example:
-
-php
-Copy code
-public function showUserDetails()
-{
-    $users = User::with('userDetails')->get();
-    return view('user_details', compact('users'));
-}
-
-Display the Data in Your Blade Template
-Now you can access the UserDetails data through the user relationship in your Blade template.
-
-blade
-Copy code
-@extends('admin.main.main')
-
-@section('admin-content')
-    <div class="container">
-        <h4 class="text-center">User Details</h4>
-        
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>User Name</th>
-                    <th>Mobile No</th>
-                    <th>Age</th>
-                    <th>DOB</th>
-                    <th>Joining Date</th>
-                    <th>Position</th>
-                    <th>Address</th>
-                    <th>Experience</th>
-                    <th>Country</th>
-                    <th>State</th>
-                    <th>City</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->userDetails->name ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->mobile_no ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->age ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->dob ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->joining_date ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->position ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->address ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->experience ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->country ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->state ?? 'N/A' }}</td>
-                        <td>{{ $user->userDetails->city ?? 'N/A' }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-@endsection
-
-
-Summary
-Define Relationships in Models: Use hasOne and belongsTo relationships to connect User and UserDetails.
-Fetch Data in Controller: Use with to load related data when fetching users.
-Display Data in Blade Template: Access related data through the relationship and handle cases where related data might not exist.
-By following these steps, you can easily fetch and display related data from another table using the user_id.
-
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																			✨✨Sql query in laravel
+																			
+	1. This query fetch result of which name start with 'Ra' and his city name eigther Dhar or Bhopal.																
+	 $user = UserDetail::where('name' ,'like' ,'Ra%')
+                        ->where(function ($query){
+                           $query->orWhere('city','=','Dhar')
+                            ->orWhere('city','=', 'Bhopal');
+                        })
+                        
+                        ->get();   
+						
+						
+	
