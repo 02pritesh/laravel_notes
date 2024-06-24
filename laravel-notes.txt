@@ -189,14 +189,28 @@
 
 																			✨✨Sql query in laravel
 																			
-	1. This query fetch result of which name start with 'Ra' and his city name eigther Dhar or Bhopal.																
-	 $user = UserDetail::where('name' ,'like' ,'Ra%')
+	1. This query fetch result of which name start with 'Ra' and his city name eigther Dhar or Bhopal.	use (where orWhere).
+
+	
+		$user = UserDetail::where('name' ,'like' ,'Ra%')
                         ->where(function ($query){
                            $query->orWhere('city','=','Dhar')
                             ->orWhere('city','=', 'Bhopal');
                         })
                         
                         ->get();   
+						
+	2. This query fetch all details of which age is 18 and 19.  use (whereIN).
+		
+		$user = UserDetail::whereIn('age',[18,19])->get();
+		
+		
+	3. This query fetch the details which age is not 18 and 19 means remeaning data show expect 18 and 19.  use (whereNOtIn).
+	
+		$user = UserDetail::whereNOtIn('age',[18,19])->get();
+		
+		
+	4. T
 						
 						
 	
