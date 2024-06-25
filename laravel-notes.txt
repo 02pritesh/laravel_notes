@@ -221,4 +221,10 @@
 		
 						
 						
-	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+													✨✨If you want to clone a project from github and after run this project in laravel so do this steps.
+													
+	1. git clone "url"
+	2. edit .env file means rename .env.example to convert .env
+	3. update composer -------> composer update
+	4. key genrate -----------> php artisan key:generate
