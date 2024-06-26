@@ -228,3 +228,35 @@
 	2. edit .env file means rename .env.example to convert .env
 	3. update composer -------> composer update
 	4. key genrate -----------> php artisan key:generate
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+												✨✨xampp shutdown problem of solution 
+												
+	1. window + r ->  services.msc
+	2. search mysql80 and open this 
+	3. click on stop button and then ok.
+	4. restart xampp
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+												✨✨Phone pay payment gateway integration 
+												
+	SDK ---> Software Development Kit.
+	
+	what is Plugin --->  A plugin is a software component that can add new features or improve the functionality of an existing computer program, website, or mobile device.
+						 They can be used for a variety of purposes, such as:
+							Adding new features
+							Improving performance
+							Enhancing security
+							Integrating with third-party services
+							Online navigation
+							Software optimization
+							Customizing websites
+							
+	what is Settlement ---> Settlement in a payment gateway is the final step in the payment process, where the payment gateway collects money from a customer's bank and deposits it
+							into the merchant's account. This process usually takes 2–3 business days, but some payment gateways may offer faster options. 
+	
+	what is Merchant Account --->  A merchant account is a bank account that allows businesses to accept customer payments, usually by credit card, debit card, or other electronic
+									transfer.  It's different from a standard business bank account because it acts as an intermediary between the business and the banks that issue the cards, and it holds onto funds before transferring them to the business's primary account. 
+
